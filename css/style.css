@@ -1,0 +1,251 @@
+@font-face {
+  font-family: iranSans;
+  src: url("../FontsIranSans/ttf/IRANSansWeb(FaNum).ttf") format("opentype"), url("../FontsIranSans/ttf/IRANSansWeb(FaNum)_Bold.ttf") format("opentype"), url("../FontsIranSans/ttf/IRANSansWeb(FaNum)_Light.ttf") format("opentype"), url("../FontsIranSans/ttf/IRANSansWeb(FaNum)_Medium.ttf") format("opentype"), url("../FontsIranSans/ttf/IRANSansWeb(FaNum)_UltraLight.ttf") format("opentype");
+}
+* {
+  font-family: iranSans, "sans-serif";
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#container {
+  width: 100%;
+  min-height: 100vh;
+  background: #383838;
+}
+
+/*               container input            */
+#container-input {
+  width: 100%;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+}
+
+#div-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+#div-input div {
+  border: 1px solid blue;
+  box-shadow: 0 1px 6px #00a7ff;
+  background: white;
+  width: 300px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 5px;
+}
+
+#div-input input {
+  width: 200px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+#div-input span img {
+  cursor: pointer;
+  display: block;
+  width: 35px;
+  height: auto;
+}
+
+/*                section todo              */
+#section-todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/*          container todo                    */
+.todo-container {
+  margin: 1rem;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 310px;
+  min-height: 100px;
+  background: #00a7ff;
+  /*background: blue;*/
+  border-radius: 10px;
+  color: white;
+}
+
+.true {
+  background: blue !important;
+}
+
+.bgDelete {
+  background: lightcoral !important;
+}
+
+.tools {
+  user-select: none;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-flow: column;
+  align-self: stretch;
+  width: 25%;
+  min-height: 100%;
+}
+
+.div-todo {
+  text-align: justify;
+  padding: 10px;
+  /*word-break: break-all;*/
+  word-break: break-word;
+}
+.div-todo .edited {
+  display: none;
+  font-size: 10px;
+  padding-top: 11px;
+}
+
+.todo {
+  width: 100%;
+  min-height: 80px;
+  margin-bottom: 2rem;
+}
+
+.time-todo {
+  width: 235px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  user-select: none;
+}
+
+.time-todo span {
+  border-bottom: 1px solid;
+}
+
+.tools span img {
+  cursor: pointer;
+  display: block;
+  width: 35px;
+  height: auto;
+}
+
+/*                              modal              */
+#container-modal, #container-edit-input {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1px);
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+}
+
+#main-container, .input-div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-flow: column;
+  position: absolute;
+  width: 300px;
+  height: 155px;
+  border-radius: 5px;
+  background: #00a7ff;
+  animation: iman 0.8s ease-in-out;
+}
+
+@keyframes iman {
+  0% {
+    transform: translate(0, -25rem);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+#content-modal h2 {
+  text-shadow: 0 1px 6px black;
+  color: white;
+}
+
+#btn-modal {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transition: 0.3s;
+}
+#btn-modal button {
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px;
+  background: blue;
+  color: white;
+  border: none;
+  outline: none;
+  width: 7rem;
+}
+#btn-modal button:hover {
+  background: lightblue;
+  color: black;
+}
+
+#btn-modal #cansel-modal {
+  display: none;
+}
+#btn-modal #delete-todo-modal {
+  display: none;
+}
+
+/*        container input edit                   */
+#container-edit-input {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.input-div {
+  height: 500px;
+}
+.input-div label textarea {
+  width: 270px;
+  height: 250px;
+  outline: none;
+  border: 1px solid blue;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.input-div .btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transition: 0.3s;
+}
+.input-div .btn button {
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  outline: none;
+  color: white;
+  background: blue;
+  border-radius: 5px;
+  width: 7rem;
+}
+.input-div .btn button:hover {
+  background: lightblue;
+  color: black;
+}
+
+/*# sourceMappingURL=style.css.map */
