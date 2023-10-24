@@ -23,7 +23,7 @@ function timeTodo() {
     return [dateConversion, dayName]
 }
 
-btnSendTodo.addEventListener('click', () => {
+function createTemplateTodo() {
     if (input.value) {
         const todo = {
             content: input.value,
@@ -37,7 +37,8 @@ btnSendTodo.addEventListener('click', () => {
         showModal('flex', 'کار روزانه ای وارد نکردید')
     }
 
-})
+}
+
 
 /*       send todo                                 */
 
@@ -148,7 +149,10 @@ function templateTodo(content) {
     todoContainer.appendChild(divTodo);
     todoContainer.appendChild(tools);
 
-    editIcon.addEventListener('click', () => openEditor(content))
+    editIcon.addEventListener('click', () => {
+        window.scrollTo(0, 0)
+        openEditor(content)
+    })
     deleteIcon.addEventListener('click', () => {
         window.scrollTo(0, 0)
         openDeletePage(content)
@@ -196,6 +200,7 @@ function openDeletePage(todo) {
     deleteTodoModal.addEventListener('click', () => deleteTodo(todo[0]))
 }
 
+/*           delete todo                                      */
 async function deleteTodo(todoId) {
     try {
         await fetch(`https://apptodos-2a17c-default-rtdb.firebaseio.com/todoAppPro/todo/${todoId}.json`, {
@@ -208,11 +213,16 @@ async function deleteTodo(todoId) {
     }
 }
 
+/*          edited todo                                      */
+
 function openEditor(todo) {
     containerEditInput.style.display = 'flex'
     inputEdit.value = todo[1].content
     sendEdite.addEventListener('click', () => editTodo(todo))
-
+    let historyScroll = window.scrollY
+    canselEdit.onclick = () => {
+        window.scrollTo(0, historyScroll)
+    }
 }
 
 async function editTodo(todo) {
@@ -238,6 +248,7 @@ async function editTodo(todo) {
     }
 }
 
+/*           check todo                                      */
 
 function checkTodo(todo, edited, containerTodo, checkImg) {
     todo.edited ? edited.style.display = 'block' : edited.style.display = 'none'
@@ -260,12 +271,13 @@ function showModal(displayContainer, contentTodo, closBtn = 'block', delBtn = 'n
     closedModal.style.display = closBtn
 }
 
-closedModal.addEventListener('click', () => closModal(undefined))
-
 function closModal(todoId) {
     containerModal.style.display = 'none'
     todoId ? todoId.classList.remove('bgDelete') : {}
 }
 
+closedModal.addEventListener('click', () => closModal(undefined))
 canselEdit.addEventListener('click', () => containerEditInput.style.display = 'none')
+btnSendTodo.addEventListener('click', createTemplateTodo)
 window.addEventListener('load', () => navigator.onLine ? generateTodo() : showModal('flex', 'اینترنت قطعه :/'))
+input.addEventListener('keypress', (e) => e.keyCode === 13 ? createTemplateTodo() : {})
